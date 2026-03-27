@@ -1,38 +1,59 @@
 /* ════════════════════════════════════════
-   BURGER PALETTE — CSS VARIABLES
+   THE HUNGRY HOUR — style.css
+   Consistent Dark Burger Theme
    ════════════════════════════════════════
-   --clr-red       Deep ketchup red   — primary CTA, accents
-   --clr-red-dk    Darker red         — hover states
-   --clr-amber     Soft mustard/cheese — prices, highlights
-   --clr-bg        Warm charcoal black — body background
-   --clr-surface   Lifted dark warm   — cards, drawers, sections
-   --clr-text      Warm cream         — body text
-   --clr-muted     Dimmed cream       — secondary text
+
+   PALETTE
+   ───────────────────────────────────────
+   --bg          #0F0A05   base background  — deep warm charcoal
+   --bg-alt      #160D07   alt sections     — slightly lifted
+   --card        #1D1009   card surface
+   --card-hover  #251407   card hover state
+
+   --primary     #C0392B   tomato red       — buttons, accents
+   --primary-dk  #A93226   hover red
+   --mustard     #D4860A   cheese yellow    — prices, highlights
+
+   --text        #F0E4CC   warm off-white   — body text
+   --text-2      rgba(240,228,204,0.60)
+   --text-3      rgba(240,228,204,0.35)
+   --border      rgba(240,228,204,0.08)
+   --border-2    rgba(240,228,204,0.14)
    ════════════════════════════════════════ */
+
 :root {
-  --clr-red: #c0392b; /* rich tomato red */
-  --clr-red-dk: #a93226; /* hover / darker red */
-  --clr-amber: #d4860a; /* warm mustard/cheese */
-  --clr-bg: #fdf6ee; /* warm parchment white */
-  --clr-surface: #fff8f2; /* card surface */
-  --clr-surface2: #fff0e4; /* section alt background */
-  --clr-text: #1c0e06; /* near-black warm brown */
-  --clr-muted: rgba(28, 14, 6, 0.5);
-  --clr-border: rgba(28, 14, 6, 0.09);
-  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.07);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.1);
+  --bg: #0f0a05;
+  --bg-alt: #160d07;
+  --card: #1d1009;
+  --card-hover: #251407;
+
+  --primary: #c0392b;
+  --primary-dk: #a93226;
+  --mustard: #d4860a;
+
+  --text: #f0e4cc;
+  --text-2: rgba(240, 228, 204, 0.6);
+  --text-3: rgba(240, 228, 204, 0.35);
+
+  --border: rgba(240, 228, 204, 0.08);
+  --border-2: rgba(240, 228, 204, 0.14);
+
+  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 8px 28px rgba(0, 0, 0, 0.5);
 }
 
 /* ── RESET ── */
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 body {
   font-family: "Poppins", sans-serif;
-  background: #fdf6ee;
-  color: #1c0e06;
+  background: var(--bg);
+  color: var(--text);
   overflow-x: hidden;
 }
 a {
@@ -48,7 +69,8 @@ button {
   border: none;
 }
 input,
-textarea {
+textarea,
+select {
   font-family: inherit;
   border: none;
   outline: none;
@@ -61,15 +83,18 @@ textarea {
   padding: 0 20px;
 }
 
-/* ── NAVBAR ── */
+/* ══════════════════════════════════
+   NAVBAR
+══════════════════════════════════ */
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 100;
-  background: rgba(253, 246, 238, 0.97);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(28, 14, 6, 0.1);
+  background: rgba(15, 10, 5, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
   padding: 16px 0;
 }
 .nav-inner {
@@ -80,7 +105,7 @@ textarea {
 .logo {
   font-size: 20px;
   font-weight: 800;
-  color: #1c0e06;
+  color: var(--text);
 }
 .nav-links {
   display: flex;
@@ -89,11 +114,11 @@ textarea {
 .nav-links a {
   font-size: 14px;
   font-weight: 500;
-  color: rgba(28, 14, 6, 0.55);
+  color: var(--text-2);
   transition: color 0.2s;
 }
 .nav-links a:hover {
-  color: #b5362a;
+  color: var(--mustard);
 }
 .nav-right {
   display: flex;
@@ -102,23 +127,25 @@ textarea {
 }
 .cart-btn {
   position: relative;
-  background: rgba(28, 14, 6, 0.05);
-  border: 1px solid rgba(28, 14, 6, 0.12);
+  background: rgba(240, 228, 204, 0.05);
+  border: 1px solid var(--border-2);
   border-radius: 10px;
   padding: 9px 13px;
-  color: #1c0e06;
+  color: var(--text);
   font-size: 15px;
-  transition: background 0.2s;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
 }
 .cart-btn:hover {
-  background: rgba(192, 57, 43, 0.08);
-  border-color: #b5362a;
+  background: rgba(192, 57, 43, 0.12);
+  border-color: var(--primary);
 }
 .cart-count {
   position: absolute;
   top: -6px;
   right: -6px;
-  background: #b5362a;
+  background: var(--primary);
   color: #fff;
   font-size: 10px;
   font-weight: 700;
@@ -127,21 +154,23 @@ textarea {
   height: 18px;
   display: grid;
   place-items: center;
-  border: 2px solid #fdf6ee;
+  border: 2px solid var(--bg);
 }
 .hamburger {
   display: none;
   background: none;
-  color: #1c0e06;
+  color: var(--text);
   font-size: 18px;
 }
 
-/* ── CART DRAWER ── */
+/* ══════════════════════════════════
+   CART DRAWER
+══════════════════════════════════ */
 .cart-overlay {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(28, 14, 6, 0.45);
+  background: rgba(0, 0, 0, 0.65);
   z-index: 200;
 }
 .cart-overlay.open {
@@ -153,8 +182,8 @@ textarea {
   top: 0;
   bottom: 0;
   width: 340px;
-  background: #fff8f2;
-  border-left: 1px solid rgba(28, 14, 6, 0.1);
+  background: var(--bg-alt);
+  border-left: 1px solid var(--border-2);
   z-index: 201;
   padding: 24px;
   display: flex;
@@ -173,16 +202,20 @@ textarea {
 .cart-header h3 {
   font-size: 18px;
   font-weight: 700;
+  color: var(--text);
 }
 .cart-header button {
-  background: rgba(28, 14, 6, 0.06);
+  background: rgba(240, 228, 204, 0.07);
   border-radius: 8px;
   padding: 7px 10px;
-  color: rgba(28, 14, 6, 0.5);
+  color: var(--text-2);
   font-size: 14px;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 .cart-header button:hover {
-  background: #b5362a;
+  background: var(--primary);
   color: #fff;
 }
 .cart-items {
@@ -192,8 +225,15 @@ textarea {
   flex-direction: column;
   gap: 12px;
 }
+.cart-items::-webkit-scrollbar {
+  width: 3px;
+}
+.cart-items::-webkit-scrollbar-thumb {
+  background: var(--border-2);
+  border-radius: 2px;
+}
 .cart-empty {
-  color: rgba(28, 14, 6, 0.38);
+  color: var(--text-3);
   font-size: 14px;
   text-align: center;
   margin-top: 60px;
@@ -202,19 +242,20 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(28, 14, 6, 0.04);
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 12px;
-  border: 1px solid rgba(28, 14, 6, 0.07);
 }
 .cart-item-left h6 {
   font-size: 14px;
   font-weight: 600;
+  color: var(--text);
   margin-bottom: 4px;
 }
 .cart-item-left span {
   font-size: 13px;
-  color: #d4860a;
+  color: var(--mustard);
   font-weight: 600;
 }
 .cart-item-right {
@@ -226,37 +267,40 @@ textarea {
   width: 26px;
   height: 26px;
   border-radius: 6px;
-  background: rgba(28, 14, 6, 0.07);
-  color: #1c0e06;
+  background: rgba(240, 228, 204, 0.08);
+  color: var(--text);
   font-size: 13px;
   display: grid;
   place-items: center;
   transition: background 0.2s;
 }
 .qty-btn:hover {
-  background: #b5362a;
+  background: var(--primary);
 }
 .qty-val {
   font-size: 14px;
   font-weight: 600;
   min-width: 16px;
   text-align: center;
+  color: var(--text);
 }
 .del-btn {
-  background: rgba(181, 54, 42, 0.1);
-  color: #b5362a;
+  background: rgba(192, 57, 43, 0.12);
+  color: var(--primary);
   border-radius: 6px;
   padding: 5px 8px;
   font-size: 12px;
-  transition: background 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 .del-btn:hover {
-  background: #b5362a;
+  background: var(--primary);
   color: #fff;
 }
 .cart-footer {
   padding-top: 16px;
-  border-top: 1px solid rgba(28, 14, 6, 0.1);
+  border-top: 1px solid var(--border);
   margin-top: 16px;
 }
 .cart-total {
@@ -264,15 +308,16 @@ textarea {
   justify-content: space-between;
   font-size: 16px;
   margin-bottom: 14px;
+  color: var(--text);
 }
 .cart-total strong {
-  color: #c08a28;
+  color: var(--mustard);
   font-size: 18px;
 }
 .btn-checkout {
   width: 100%;
   padding: 13px;
-  background: #b5362a;
+  background: var(--primary);
   color: #fff;
   border-radius: 10px;
   font-size: 15px;
@@ -282,11 +327,13 @@ textarea {
     transform 0.2s;
 }
 .btn-checkout:hover {
-  background: #902a1f;
+  background: var(--primary-dk);
   transform: translateY(-1px);
 }
 
-/* ── HERO ── */
+/* ══════════════════════════════════
+   HERO
+══════════════════════════════════ */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -294,9 +341,9 @@ textarea {
   padding-top: 80px;
   background: radial-gradient(
     ellipse at 65% 55%,
-    rgba(192, 57, 43, 0.07) 0%,
-    rgba(212, 134, 10, 0.05) 50%,
-    transparent 75%
+    rgba(192, 57, 43, 0.1) 0%,
+    rgba(212, 134, 10, 0.05) 45%,
+    transparent 72%
   );
 }
 .hero-inner {
@@ -307,9 +354,9 @@ textarea {
 }
 .hero-tag {
   display: inline-block;
-  background: rgba(181, 54, 42, 0.1);
-  border: 1px solid rgba(181, 54, 42, 0.28);
-  color: #b5362a;
+  background: rgba(192, 57, 43, 0.12);
+  border: 1px solid rgba(192, 57, 43, 0.28);
+  color: var(--primary);
   font-size: 13px;
   font-weight: 600;
   padding: 5px 14px;
@@ -321,13 +368,14 @@ textarea {
   font-weight: 900;
   line-height: 1.12;
   margin-bottom: 18px;
+  color: var(--text);
 }
 .hero-text h1 span {
-  color: #b5362a;
+  color: var(--primary);
 }
 .hero-text p {
   font-size: 16px;
-  color: rgba(28, 14, 6, 0.58);
+  color: var(--text-2);
   line-height: 1.7;
   margin-bottom: 30px;
   max-width: 440px;
@@ -337,43 +385,43 @@ textarea {
   gap: 14px;
   flex-wrap: wrap;
 }
+
 .btn-primary {
   padding: 13px 28px;
-  background: #b5362a;
+  background: var(--primary);
   color: #fff;
   border-radius: 10px;
   font-size: 15px;
   font-weight: 600;
+  display: inline-block;
+  box-shadow: 0 4px 16px rgba(192, 57, 43, 0.3);
   transition:
     background 0.2s,
-    transform 0.2s;
-  display: inline-block;
-  box-shadow: 0 4px 20px rgba(181, 54, 42, 0.28);
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 .btn-primary:hover {
-  background: #902a1f;
-  transform: translateY(-2px);
+  background: var(--primary-dk);
   color: #fff;
-  box-shadow:
-    0 8px 28px rgba(181, 54, 42, 0.4),
-    0 2px 0 rgba(200, 138, 40, 0.08) inset;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(192, 57, 43, 0.4);
 }
 .btn-outline {
   padding: 12px 28px;
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
-  color: #1c0e06;
+  border: 1.5px solid var(--border-2);
+  color: var(--text);
   border-radius: 10px;
   font-size: 15px;
   font-weight: 500;
+  display: inline-block;
   transition:
     border-color 0.2s,
     background 0.2s;
-  display: inline-block;
 }
 .btn-outline:hover {
-  border-color: #b5362a;
-  background: rgba(181, 54, 42, 0.07);
-  color: #1c0e06;
+  border-color: var(--primary);
+  background: rgba(192, 57, 43, 0.08);
+  color: var(--text);
 }
 .hero-img {
   display: flex;
@@ -383,7 +431,7 @@ textarea {
 .burger-emoji {
   font-size: 160px;
   animation: float 3s ease-in-out infinite;
-  filter: drop-shadow(0 20px 40px rgba(181, 54, 42, 0.28));
+  filter: drop-shadow(0 16px 40px rgba(0, 0, 0, 0.6));
 }
 @keyframes float {
   0%,
@@ -395,9 +443,11 @@ textarea {
   }
 }
 
-/* ── STATS BAR ── */
+/* ══════════════════════════════════
+   STATS BAR
+══════════════════════════════════ */
 .stats-bar {
-  background: linear-gradient(90deg, #902a1f, #b5362a, #902a1f);
+  background: var(--primary);
   padding: 18px 0;
 }
 .stats-inner {
@@ -420,13 +470,23 @@ textarea {
   opacity: 0.85;
 }
 
-/* ── SECTION ── */
+/* ══════════════════════════════════
+   SECTIONS
+══════════════════════════════════ */
 .section {
   padding: 80px 0;
+  background: var(--bg);
 }
 .about-section {
-  background: #fff0e6;
+  background: var(--bg-alt);
 }
+.booking-section {
+  background: var(--bg-alt);
+}
+.reviews-section {
+  background: var(--bg);
+}
+
 .section-header {
   text-align: center;
   margin-bottom: 48px;
@@ -435,16 +495,19 @@ textarea {
   font-size: clamp(26px, 4vw, 40px);
   font-weight: 800;
   margin-bottom: 10px;
+  color: var(--text);
 }
 .section-header h2 span {
-  color: #b5362a;
+  color: var(--primary);
 }
 .section-header p {
   font-size: 15px;
-  color: rgba(28, 14, 6, 0.5);
+  color: var(--text-2);
 }
 
-/* ── FILTERS ── */
+/* ══════════════════════════════════
+   MENU FILTERS
+══════════════════════════════════ */
 .filters {
   display: flex;
   gap: 10px;
@@ -455,41 +518,46 @@ textarea {
 .filter-btn {
   padding: 8px 22px;
   border-radius: 50px;
-  background: rgba(28, 14, 6, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(28, 14, 6, 0.55);
+  background: rgba(240, 228, 204, 0.05);
+  border: 1px solid var(--border);
+  color: var(--text-2);
   font-size: 14px;
   font-weight: 500;
   transition: all 0.2s;
 }
 .filter-btn:hover {
-  color: #1c0e06;
-  background: rgba(28, 14, 6, 0.07);
+  color: var(--text);
+  background: rgba(240, 228, 204, 0.09);
+  border-color: var(--border-2);
 }
 .filter-btn.active {
-  background: #b5362a;
+  background: var(--primary);
   color: #fff;
-  border-color: #b5362a;
+  border-color: var(--primary);
 }
 
-/* ── MENU CARDS ── */
+/* ══════════════════════════════════
+   MENU CARDS
+══════════════════════════════════ */
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 24px;
 }
 .menu-card {
-  background: #ffffff;
-  border: 1px solid rgba(28, 14, 6, 0.09);
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 16px;
   overflow: hidden;
   transition:
     transform 0.3s,
-    box-shadow 0.3s;
+    box-shadow 0.3s,
+    border-color 0.3s;
 }
 .menu-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(28, 14, 6, 0.12);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-2);
 }
 .menu-card.hidden {
   display: none;
@@ -508,7 +576,7 @@ textarea {
   position: absolute;
   top: 10px;
   left: 10px;
-  background: #b5362a;
+  background: var(--primary);
   color: #fff;
   font-size: 10px;
   font-weight: 700;
@@ -524,8 +592,8 @@ textarea {
   background: #ea580c;
 }
 .badge.new-badge {
-  background: #d4860a;
-  color: #fff;
+  background: var(--mustard);
+  color: #0f0a05;
 }
 .card-body {
   padding: 16px;
@@ -533,11 +601,12 @@ textarea {
 .card-body h4 {
   font-size: 16px;
   font-weight: 700;
+  color: var(--text);
   margin-bottom: 6px;
 }
 .card-body p {
   font-size: 13px;
-  color: rgba(28, 14, 6, 0.5);
+  color: var(--text-2);
   line-height: 1.5;
   margin-bottom: 14px;
 }
@@ -549,11 +618,11 @@ textarea {
 .price {
   font-size: 18px;
   font-weight: 800;
-  color: #c08a28;
+  color: var(--mustard);
 }
 .add-btn {
   padding: 8px 18px;
-  background: #b5362a;
+  background: var(--primary);
   color: #fff;
   border-radius: 8px;
   font-size: 13px;
@@ -563,30 +632,33 @@ textarea {
     transform 0.15s;
 }
 .add-btn:hover {
-  background: #902a1f;
+  background: var(--primary-dk);
   transform: scale(1.05);
-  box-shadow: 0 3px 10px rgba(181, 54, 42, 0.28);
 }
 
-/* ── FEATURES ── */
+/* ══════════════════════════════════
+   FEATURES
+══════════════════════════════════ */
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 24px;
 }
 .feature-card {
-  background: #ffffff;
-  border: 1px solid rgba(28, 14, 6, 0.09);
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 14px;
   padding: 28px 22px;
   text-align: center;
   transition:
     transform 0.3s,
-    border-color 0.3s;
+    border-color 0.3s,
+    background 0.3s;
 }
 .feature-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(181, 54, 42, 0.28);
+  border-color: rgba(192, 57, 43, 0.28);
+  background: var(--card-hover);
 }
 .feat-icon {
   font-size: 40px;
@@ -595,15 +667,18 @@ textarea {
 .feature-card h4 {
   font-size: 16px;
   font-weight: 700;
+  color: var(--text);
   margin-bottom: 8px;
 }
 .feature-card p {
   font-size: 13px;
-  color: rgba(28, 14, 6, 0.52);
+  color: var(--text-2);
   line-height: 1.6;
 }
 
-/* ── CONTACT ── */
+/* ══════════════════════════════════
+   CONTACT
+══════════════════════════════════ */
 .contact-wrap {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
@@ -611,8 +686,8 @@ textarea {
   align-items: start;
 }
 .contact-info {
-  background: #ffffff;
-  border: 1px solid rgba(28, 14, 6, 0.09);
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 14px;
   padding: 28px;
   display: flex;
@@ -624,10 +699,10 @@ textarea {
   align-items: center;
   gap: 12px;
   font-size: 14px;
-  color: rgba(28, 14, 6, 0.55);
+  color: var(--text-2);
 }
 .info-item i {
-  color: #b5362a;
+  color: var(--primary);
   font-size: 15px;
   width: 20px;
 }
@@ -640,22 +715,25 @@ textarea {
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  background: rgba(28, 14, 6, 0.06);
+  background: rgba(240, 228, 204, 0.06);
+  border: 1px solid var(--border);
   display: grid;
   place-items: center;
-  color: rgba(28, 14, 6, 0.55);
+  color: var(--text-2);
   font-size: 14px;
   transition:
     background 0.2s,
-    color 0.2s;
+    color 0.2s,
+    border-color 0.2s;
 }
 .social-links a:hover {
-  background: #b5362a;
+  background: var(--primary);
   color: #fff;
+  border-color: var(--primary);
 }
 .contact-form {
-  background: #ffffff;
-  border: 1px solid rgba(28, 14, 6, 0.09);
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 14px;
   padding: 28px;
   display: flex;
@@ -664,31 +742,33 @@ textarea {
 }
 .contact-form input,
 .contact-form textarea {
-  background: #faf4ee;
-  border: 1px solid rgba(28, 14, 6, 0.12);
+  background: rgba(240, 228, 204, 0.05);
+  border: 1px solid var(--border-2);
   border-radius: 10px;
   padding: 12px 14px;
   font-size: 14px;
-  color: #1c0e06;
+  color: var(--text);
   width: 100%;
   transition: border-color 0.2s;
 }
 .contact-form input:focus,
 .contact-form textarea:focus {
-  border-color: #b5362a;
+  border-color: var(--primary);
 }
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-  color: rgba(28, 14, 6, 0.32);
+  color: var(--text-3);
 }
 .contact-form textarea {
   resize: vertical;
 }
 
-/* ── FOOTER ── */
+/* ══════════════════════════════════
+   FOOTER
+══════════════════════════════════ */
 .footer {
-  background: #f5ede0;
-  border-top: 1px solid rgba(28, 14, 6, 0.1);
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
   padding: 28px 0;
   text-align: center;
 }
@@ -701,11 +781,11 @@ textarea {
 .footer-logo {
   font-size: 18px;
   font-weight: 800;
-  color: #1c0e06;
+  color: var(--text);
 }
 .footer p {
   font-size: 13px;
-  color: rgba(28, 14, 6, 0.45);
+  color: var(--text-3);
 }
 .footer-links {
   display: flex;
@@ -713,21 +793,23 @@ textarea {
 }
 .footer-links a {
   font-size: 13px;
-  color: rgba(28, 14, 6, 0.45);
+  color: var(--text-3);
   transition: color 0.2s;
 }
 .footer-links a:hover {
-  color: #b5362a;
+  color: var(--mustard);
 }
 
-/* ── TOAST ── */
+/* ══════════════════════════════════
+   TOAST
+══════════════════════════════════ */
 .toast {
   position: fixed;
   bottom: 24px;
   right: 24px;
-  background: #fff8f2;
-  border: 1px solid rgba(28, 14, 6, 0.12);
-  color: #1c0e06;
+  background: var(--card);
+  border: 1px solid var(--border-2);
+  color: var(--text);
   font-size: 14px;
   font-weight: 500;
   padding: 12px 20px;
@@ -736,7 +818,7 @@ textarea {
   transform: translateY(60px);
   opacity: 0;
   transition: all 0.35s ease;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
   pointer-events: none;
 }
 .toast.show {
@@ -744,7 +826,9 @@ textarea {
   opacity: 1;
 }
 
-/* ── RESPONSIVE ── */
+/* ══════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════ */
 @media (max-width: 768px) {
   .nav-links {
     display: none;
@@ -753,8 +837,8 @@ textarea {
     top: 64px;
     left: 0;
     right: 0;
-    background: #fdf6ee;
-    border-top: 1px solid rgba(28, 14, 6, 0.1);
+    background: rgba(15, 10, 5, 0.97);
+    border-top: 1px solid var(--border);
     padding: 16px 20px;
     gap: 12px;
   }
@@ -790,10 +874,9 @@ textarea {
   }
 }
 
-/* ── TABLE BOOKING ── */
-.booking-section {
-  background: #fff0e6;
-}
+/* ══════════════════════════════════
+   TABLE BOOKING
+══════════════════════════════════ */
 .booking-wrap {
   display: grid;
   grid-template-columns: 1fr 1.6fr;
@@ -801,8 +884,8 @@ textarea {
   align-items: start;
 }
 .booking-info {
-  background: #ffffff;
-  border: 1px solid rgba(28, 14, 6, 0.09);
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 14px;
   padding: 28px;
   display: flex;
@@ -812,6 +895,7 @@ textarea {
 .booking-info h3 {
   font-size: 18px;
   font-weight: 700;
+  color: var(--text);
   margin-bottom: 4px;
 }
 .binfo-item {
@@ -831,31 +915,34 @@ textarea {
 .binfo-item strong {
   font-size: 14px;
   font-weight: 600;
+  color: var(--text);
 }
 .binfo-item span {
   font-size: 13px;
-  color: rgba(28, 14, 6, 0.5);
+  color: var(--text-2);
 }
 .booking-note {
-  background: rgba(181, 54, 42, 0.07);
-  border: 1px solid rgba(181, 54, 42, 0.2);
+  background: rgba(192, 57, 43, 0.08);
+  border: 1px solid rgba(192, 57, 43, 0.2);
   border-radius: 10px;
   padding: 12px 14px;
   font-size: 13px;
-  color: rgba(28, 14, 6, 0.55);
+  color: var(--text-2);
   display: flex;
   align-items: center;
   gap: 8px;
 }
 .booking-note i {
-  color: #b5362a;
+  color: var(--primary);
 }
 .booking-form-card {
-  background: #ffffff;
-  border: 1px solid rgba(28, 14, 6, 0.09);
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 14px;
   padding: 28px;
 }
+
+/* Steps */
 .steps {
   display: flex;
   align-items: center;
@@ -867,14 +954,14 @@ textarea {
   gap: 8px;
   font-size: 13px;
   font-weight: 600;
-  color: rgba(28, 14, 6, 0.35);
+  color: var(--text-3);
 }
 .step span {
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  background: rgba(240, 228, 204, 0.06);
+  border: 1.5px solid var(--border-2);
   display: grid;
   place-items: center;
   font-size: 12px;
@@ -882,19 +969,21 @@ textarea {
   transition: all 0.3s;
 }
 .step.active {
-  color: #1c0e06;
+  color: var(--text);
 }
 .step.active span {
-  background: #b5362a;
-  border-color: #b5362a;
-  color: white;
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
 }
 .step-line {
   flex: 1;
   height: 1.5px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--border);
   margin: 0 10px;
 }
+
+/* Form fields */
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -909,17 +998,17 @@ textarea {
 .form-group label {
   font-size: 13px;
   font-weight: 500;
-  color: rgba(28, 14, 6, 0.58);
+  color: var(--text-2);
 }
 .form-group input,
 .form-group select,
 .form-group textarea {
-  background: #faf4ee;
-  border: 1px solid rgba(28, 14, 6, 0.12);
+  background: rgba(240, 228, 204, 0.05);
+  border: 1px solid var(--border-2);
   border-radius: 10px;
   padding: 11px 14px;
   font-size: 14px;
-  color: #1c0e06;
+  color: var(--text);
   font-family: inherit;
   transition: border-color 0.2s;
   width: 100%;
@@ -928,19 +1017,22 @@ textarea {
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  border-color: #b5362a;
+  border-color: var(--primary);
   outline: none;
 }
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: rgba(28, 14, 6, 0.3);
+  color: var(--text-3);
 }
 .form-group select option {
-  background: #faf4ee;
+  background: var(--bg-alt);
+  color: var(--text);
 }
+
+/* Booking summary */
 .booking-summary {
-  background: rgba(28, 14, 6, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(240, 228, 204, 0.03);
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 16px;
   margin-bottom: 20px;
@@ -950,16 +1042,17 @@ textarea {
   justify-content: space-between;
   font-size: 14px;
   padding: 7px 0;
-  border-bottom: 1px solid rgba(28, 14, 6, 0.07);
+  border-bottom: 1px solid var(--border);
 }
 .summary-row:last-child {
   border-bottom: none;
 }
 .summary-row span:first-child {
-  color: rgba(28, 14, 6, 0.48);
+  color: var(--text-2);
 }
 .summary-row span:last-child {
   font-weight: 600;
+  color: var(--text);
 }
 .confirm-btns {
   display: flex;
@@ -974,6 +1067,8 @@ textarea {
   font-family: inherit;
   cursor: pointer;
 }
+
+/* Success */
 .success-box {
   text-align: center;
   padding: 32px 20px;
@@ -985,25 +1080,25 @@ textarea {
 .success-box h4 {
   font-size: 22px;
   font-weight: 700;
+  color: var(--text);
   margin-bottom: 8px;
 }
 .success-box p {
   font-size: 14px;
-  color: rgba(28, 14, 6, 0.55);
+  color: var(--text-2);
   margin-bottom: 20px;
   line-height: 1.6;
 }
 
-/* ── REVIEWS ── */
-.reviews-section {
-  background: #fdf6ee;
-}
+/* ══════════════════════════════════
+   REVIEWS
+══════════════════════════════════ */
 .rating-overview {
   display: flex;
   align-items: center;
   gap: 48px;
-  background: rgba(28, 14, 6, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 14px;
   padding: 28px;
   margin-bottom: 40px;
@@ -1016,7 +1111,7 @@ textarea {
 .big-num {
   font-size: 64px;
   font-weight: 900;
-  color: #c08a28;
+  color: var(--mustard);
   line-height: 1;
   display: block;
 }
@@ -1026,8 +1121,9 @@ textarea {
 }
 .big-sub {
   font-size: 12px;
-  color: rgba(28, 14, 6, 0.45);
+  color: var(--text-3);
 }
+
 .rating-bars {
   flex: 1;
   display: flex;
@@ -1040,7 +1136,7 @@ textarea {
   align-items: center;
   gap: 10px;
   font-size: 13px;
-  color: rgba(28, 14, 6, 0.55);
+  color: var(--text-2);
 }
 .rbar-row > span:first-child {
   width: 30px;
@@ -1052,15 +1148,16 @@ textarea {
 .rbar {
   flex: 1;
   height: 8px;
-  background: rgba(28, 14, 6, 0.08);
+  background: rgba(240, 228, 204, 0.08);
   border-radius: 4px;
   overflow: hidden;
 }
 .rbar-fill {
   height: 100%;
-  background: #b5362a;
+  background: var(--primary);
   border-radius: 4px;
 }
+
 .reviews-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -1068,8 +1165,8 @@ textarea {
   margin-bottom: 48px;
 }
 .review-card {
-  background: rgba(28, 14, 6, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 14px;
   padding: 20px;
   display: flex;
@@ -1081,7 +1178,7 @@ textarea {
 }
 .review-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(181, 54, 42, 0.22);
+  border-color: var(--border-2);
 }
 .rev-header {
   display: flex;
@@ -1096,7 +1193,7 @@ textarea {
   place-items: center;
   font-size: 16px;
   font-weight: 800;
-  color: white;
+  color: #fff;
   flex-shrink: 0;
 }
 .rev-header > div:nth-child(2) {
@@ -1106,25 +1203,28 @@ textarea {
   display: block;
   font-size: 14px;
   font-weight: 700;
+  color: var(--text);
 }
 .rev-header span {
   font-size: 12px;
-  color: rgba(28, 14, 6, 0.42);
+  color: var(--text-3);
 }
 .rev-stars {
   font-size: 13px;
 }
 .review-card > p {
   font-size: 14px;
-  color: rgba(28, 14, 6, 0.55);
+  color: var(--text-2);
   line-height: 1.65;
   font-style: italic;
   flex: 1;
 }
 .rev-date {
   font-size: 12px;
-  color: rgba(28, 14, 6, 0.38);
+  color: var(--text-3);
 }
+
+/* Write review */
 .write-review-section {
   margin-top: 8px;
 }
@@ -1133,10 +1233,11 @@ textarea {
   font-weight: 700;
   text-align: center;
   margin-bottom: 24px;
+  color: var(--text);
 }
 .write-review-card {
-  background: rgba(28, 14, 6, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 14px;
   padding: 28px;
   max-width: 640px;
@@ -1152,7 +1253,7 @@ textarea {
 .star-picker label {
   font-size: 13px;
   font-weight: 500;
-  color: rgba(28, 14, 6, 0.58);
+  color: var(--text-2);
 }
 .stars-input {
   display: flex;
@@ -1160,7 +1261,7 @@ textarea {
 }
 .star-pick {
   font-size: 28px;
-  color: rgba(28, 14, 6, 0.18);
+  color: rgba(240, 228, 204, 0.15);
   cursor: pointer;
   transition:
     color 0.15s,
@@ -1168,7 +1269,7 @@ textarea {
 }
 .star-pick:hover,
 .star-pick.active {
-  color: #c08a28;
+  color: var(--mustard);
   transform: scale(1.15);
 }
 
@@ -1186,111 +1287,3 @@ textarea {
     grid-template-columns: 1fr;
   }
 }
-
-/* ── REFINED PALETTE OVERRIDES ── */
-
-/* Heading accent — flat warm red, no text-shadow */
-.hero-text h1 span {
-  color: #c0392b;
-}
-
-/* Section heading accent — amber warmth only */
-.section-header h2 span {
-  color: #c0392b;
-}
-
-/* Stats bar — flat dark red, no gradient */
-.stats-bar {
-  background: var(--clr-red-dk);
-}
-
-/* Active filter — flat, subtle shadow only */
-.filter-btn.active {
-  background: var(--clr-red);
-  border-color: transparent;
-  box-shadow: 0 2px 10px rgba(181, 54, 42, 0.3);
-}
-
-/* Card hover — warm subtle border, no glow */
-.menu-card:hover {
-  border-color: rgba(192, 57, 43, 0.15);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
-}
-
-/* Feature card hover */
-.feature-card:hover {
-  border-color: rgba(192, 57, 43, 0.18);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-}
-
-/* Price — soft amber, no text-shadow */
-.price {
-  color: #d4860a;
-}
-
-/* Cart total and item price */
-.cart-total strong {
-  color: #d4860a;
-}
-.cart-item-left span {
-  color: var(--clr-amber);
-}
-
-/* Rating number */
-.big-num {
-  color: #d4860a;
-}
-
-/* Rating bar — flat warm fill */
-.rbar-fill {
-  background: var(--clr-red);
-}
-
-/* Active stars */
-.star-pick.active {
-  color: #d4860a;
-}
-
-/* Step active dot — no glow */
-.step.active span {
-  background: var(--clr-red);
-  border-color: var(--clr-red);
-}
-
-/* Nav hover — amber warm */
-.nav-links a:hover {
-  color: #c0392b;
-}
-
-/* Footer link hover */
-.footer-links a:hover {
-  color: #c0392b;
-}
-
-/* Contact info icons */
-.info-item i {
-  color: var(--clr-red);
-}
-
-/* Social hover */
-.social-links a:hover {
-  background: var(--clr-red);
-  color: #fff;
-}
-
-/* Booking note */
-.booking-note {
-  background: rgba(192, 57, 43, 0.06);
-  border-color: rgba(192, 57, 43, 0.18);
-}
-.booking-note i {
-  color: var(--clr-red);
-}
-
-/* Review card hover */
-.review-card:hover {
-  border-color: rgba(181, 54, 42, 0.2);
-}
-
-/* Warm card tint — very subtle */
-/* light theme: cards use solid white, no tint needed */
